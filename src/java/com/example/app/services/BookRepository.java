@@ -33,6 +33,7 @@ public class BookRepository implements ProjectRepository<Book> {
                 return repo.remove(book);
             }
         }
+        logger.info("book id " + bookIdToRemove + " not found - remove failed");
         return false;
     }
 }
