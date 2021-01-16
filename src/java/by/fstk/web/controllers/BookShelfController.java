@@ -1,7 +1,7 @@
-package com.example.web.controllers;
+package by.fstk.web.controllers;
 
-import com.example.app.services.BookService;
-import com.example.web.dto.Book;
+import by.fstk.app.services.BookService;
+import by.fstk.web.dto.Book;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

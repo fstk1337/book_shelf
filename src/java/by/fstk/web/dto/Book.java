@@ -1,4 +1,4 @@
-package com.example.web.dto;
+package by.fstk.web.dto;
 
 public class Book {
     private Integer id;

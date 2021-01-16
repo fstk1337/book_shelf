@@ -1,4 +1,5 @@
-package com.example.web.dto;
+package by.fstk.web.dto;
+
 
 public class LoginForm {
     private String username;

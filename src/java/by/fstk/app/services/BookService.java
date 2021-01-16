@@ -1,6 +1,6 @@
-package com.example.app.services;
+package by.fstk.app.services;
 
-import com.example.web.dto.Book;
+import by.fstk.web.dto.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

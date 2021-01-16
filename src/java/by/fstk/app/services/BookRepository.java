@@ -1,6 +1,6 @@
-package com.example.app.services;
+package by.fstk.app.services;
 
-import com.example.web.dto.Book;
+import by.fstk.web.dto.Book;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 

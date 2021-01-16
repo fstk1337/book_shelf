@@ -1,8 +1,8 @@
-package com.example.web.controllers;
+package by.fstk.web.controllers;
 
 
-import com.example.app.services.LoginService;
-import com.example.web.dto.LoginForm;
+import by.fstk.app.services.LoginService;
+import by.fstk.web.dto.LoginForm;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     private final Logger logger = Logger.getLogger(LoginController.class);
-    private LoginService loginService;
+    private final LoginService loginService;
 
     @Autowired
     public LoginController(LoginService loginService) {

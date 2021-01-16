@@ -11,7 +11,7 @@
             transform: translate(-50%, -50%);
         }
 
-        .login_item {
+        .login_item, .create_item {
             margin-bottom: 10px;
         }
 
@@ -31,6 +31,7 @@
             <input class="login_item" type="password" placeholder="password" th:field="*{password}">
             <br>
             <input class="login_item" type="submit" value="login">
+            <input class="create_item" type="button" value="create" onclick="location.href='./create'">
         </form>
     </div>
 </body>
