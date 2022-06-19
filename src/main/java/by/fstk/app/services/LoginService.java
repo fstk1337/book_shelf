@@ -2,7 +2,8 @@ package by.fstk.app.services;
 
 import by.fstk.web.dto.LoginForm;
 import by.fstk.web.dto.User;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 public class LoginService {
 
-    private final Logger logger = Logger.getLogger(LoginService.class);
+    private final Logger logger = LogManager.getLogger(LoginService.class);
 
     public boolean authenticate(LoginForm loginForm) {
         logger.info("try auth with user-form: " + loginForm);

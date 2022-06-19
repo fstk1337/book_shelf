@@ -2,7 +2,8 @@ package by.fstk.web.controllers;
 
 import by.fstk.app.services.UserService;
 import by.fstk.web.dto.UserForm;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/create")
 public class UserController {
-    private final Logger logger = Logger.getLogger(UserController.class);
+    private final Logger logger = LogManager.getLogger(UserController.class);
     private final UserService userService;
 
     @Autowired

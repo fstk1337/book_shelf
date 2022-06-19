@@ -1,7 +1,8 @@
 package by.fstk.app.services;
 
 import by.fstk.web.dto.User;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 public class UserRepository implements ProjectRepository<User> {
 
     private static UserRepository userRepo;
-    private final Logger logger = Logger.getLogger(UserRepository.class);
+    private final Logger logger = LogManager.getLogger(UserRepository.class);
     private final List<User> users = new ArrayList<>();
 
     private UserRepository() {

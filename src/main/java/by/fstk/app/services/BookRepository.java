@@ -1,7 +1,8 @@
 package by.fstk.app.services;
 
 import by.fstk.web.dto.Book;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 @Repository
 public class BookRepository implements ProjectRepository<Book> {
 
-    private final Logger logger = Logger.getLogger(BookRepository.class);
+    private final Logger logger = LogManager.getLogger(BookRepository.class);
     private final List<Book> repo = new ArrayList<>();
 
     @Override

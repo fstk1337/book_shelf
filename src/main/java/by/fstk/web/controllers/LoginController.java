@@ -3,7 +3,8 @@ package by.fstk.web.controllers;
 
 import by.fstk.app.services.LoginService;
 import by.fstk.web.dto.LoginForm;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/login")
 public class LoginController {
 
-    private final Logger logger = Logger.getLogger(LoginController.class);
+    private final Logger logger = LogManager.getLogger(LoginController.class);
     private final LoginService loginService;
 
     @Autowired
