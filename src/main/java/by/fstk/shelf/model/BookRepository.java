@@ -1,6 +1,6 @@
-package by.fstk.app.services;
+package by.fstk.shelf.model;
 
-import by.fstk.web.dto.Book;
+import by.fstk.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;

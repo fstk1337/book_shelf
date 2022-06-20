@@ -1,4 +1,4 @@
-package by.fstk.app.services;
+package by.fstk.shelf.model;
 
 import java.util.List;
 

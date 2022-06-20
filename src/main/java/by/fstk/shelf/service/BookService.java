@@ -1,6 +1,7 @@
-package by.fstk.app.services;
+package by.fstk.shelf.service;
 
-import by.fstk.web.dto.Book;
+import by.fstk.shelf.model.ProjectRepository;
+import by.fstk.shelf.web.dto.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package by.fstk.web.dto;
+package by.fstk.shelf.web.dto;
 
 public class User {
     private Integer id;

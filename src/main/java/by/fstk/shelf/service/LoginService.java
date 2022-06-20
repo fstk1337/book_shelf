@@ -1,7 +1,8 @@
-package by.fstk.app.services;
+package by.fstk.shelf.service;
 
-import by.fstk.web.dto.LoginForm;
-import by.fstk.web.dto.User;
+import by.fstk.shelf.model.UserRepository;
+import by.fstk.shelf.web.dto.LoginForm;
+import by.fstk.shelf.web.dto.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;

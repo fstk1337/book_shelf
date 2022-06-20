@@ -1,4 +1,5 @@
-package by.fstk.web.dto;
+package by.fstk.shelf.web.dto;
+
 
 public class Book {
     private Integer id;

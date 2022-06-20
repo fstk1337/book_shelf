@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>My book shelf</title>
@@ -32,17 +32,20 @@
 </head>
 <body>
     <div id="root_container">
-        <form method="post" th:action="@{/books/save}" th:object="${book}">
+        <form method="post">
             <table>
                 <tr>
                     <td>
-                        <input type="text" placeholder="author" th:field="*{author}">
+                        <label for="author">Author: </label>
+                        <input id="author" type="text">
                     </td>
                     <td>
-                        <input type="text" placeholder="book_title" th:field="*{title}">
+                        <label for="title">Book title: </label>
+                        <input id="title" type="text">
                     </td>
                     <td>
-                        <input type="text" placeholder="size (pages)" th:field="*{size}">
+                        <label for="size">Size (pages): </label>
+                        <input id="size" type="text">
                     </td>
                     <td>
                         <input type="submit" value="save">
@@ -51,14 +54,17 @@
             </table>
         </form>
 
-        <form method="post" th:action="@{/books/remove}">
+        <form method="post">
             <table>
-                <td>
-                    <input type="text" placeholder="id number" th:name="bookIdToRemove">
-                </td>
-                <td>
-                    <input type="submit" value="remove">
-                </td>
+                <tr>
+                    <td>
+                        <label for="book-id">Book ID: </label>
+                        <input id="book-id" type="text" placeholder="id number">
+                    </td>
+                    <td>
+                        <input type="submit" value="remove">
+                    </td>
+                </tr>
             </table>
         </form>
         <table id="books">
@@ -68,11 +74,11 @@
                 <th>title</th>
                 <th>size</th>
             </tr>
-            <tr th:each="book : ${bookList}">
-                <td th:text="${book.id}"></td>
-                <td th:text="${book.author}"></td>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.size}"></td>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </table>
     </div>

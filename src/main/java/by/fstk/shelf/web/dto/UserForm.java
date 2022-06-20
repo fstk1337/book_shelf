@@ -1,16 +1,15 @@
-package by.fstk.web.dto;
+package by.fstk.shelf.web.dto;
 
-
-public class LoginForm {
+public class UserForm {
     private String username;
     private String password;
 
-    public LoginForm(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public UserForm() {
     }
 
-    public LoginForm() {
+    public UserForm(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {

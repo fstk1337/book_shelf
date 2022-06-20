@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>Book shelf create user</title>
     <meta charset="UTF-8">
@@ -23,12 +23,14 @@
 </head>
 <body>
 <div id="user_form">
-    <form method="post" th:action="@{/create/new}" th:object="${userForm}">
-        <img id="book_icon" class="user_item" th:src="@{/images/book_icon.png}">
+    <form method="post">
+        <img id="book_icon" class="user_item" src="images/book_icon.png" alt="book">
         <br>
-        <input class="user_item" type="text" placeholder="enter username" th:field="*{username}">
+        <label for="username">Username: </label>
+        <input id="username" class="user_item" type="text">
         <br>
-        <input class="user_item" type="password" placeholder="password" th:field="*{password}">
+        <label for="password">Password: </label>
+        <input id="password" class="user_item" type="password">
         <br>
         <input class="create_item" type="submit" value="create">
     </form>
