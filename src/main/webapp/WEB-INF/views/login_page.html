@@ -3,12 +3,12 @@
 <head>
     <title>Book shelf login</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
     <div class="login-form">
         <div class="form-header">
-            <img id="book_icon" class="login_item" src="img/book_icon.png" alt="book"/>
+            <img id="book_icon" class="login_item" th:src="@{/img/book_icon.png}" alt="book"/>
         </div>
         <div class="form-wrapper">
             <form method="post" class="form" th:action="@{/login/auth}" th:object="${loginForm}">

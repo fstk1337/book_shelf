@@ -12,8 +12,10 @@
 
     <context:component-scan base-package="by.fstk.shelf.web" />
     <mvc:annotation-driven/>
-    <mvc:resources mapping="/css/**" location="css/"/>
-    <mvc:resources mapping="/img/**" location="img/"/>
+    <mvc:resources mapping="/img/**" location="classpath:img"/>
+    <mvc:resources mapping="/css/**" location="classpath:css/"/>
+<!--    <mvc:resources mapping="/css/**" location="css/"/>-->
+<!--    <mvc:resources mapping="/img/**" location="img/"/>-->
 
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
             <property name="prefix" value="/WEB-INF/views/"/>
