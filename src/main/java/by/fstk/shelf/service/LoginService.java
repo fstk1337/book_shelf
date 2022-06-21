@@ -16,7 +16,8 @@ public class LoginService {
 
     public boolean authenticate(LoginForm loginForm) {
         logger.info("try auth with user-form: " + loginForm);
-        return findUser(new User(loginForm.getUsername(), loginForm.getPassword()));
+        return loginForm.getUsername().equals("root") && loginForm.getPassword().equals("123");
+        //return findUser(new User(loginForm.getUsername(), loginForm.getPassword()));
     }
 
     public boolean findUser(User user) {

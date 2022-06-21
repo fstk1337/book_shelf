@@ -1,8 +1,38 @@
-#login_form {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+fieldset {
+    border: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    font-weight: 600;
 }
 
 .login_item, .create_item {
@@ -12,4 +42,28 @@
 #book_icon {
     width: 150px;
     height: auto;
+}
+
+#root_container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#books {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+table {
+    margin: 25px;
+}
+
+th {
+    text-align: left;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
 }
