@@ -19,7 +19,7 @@
                     <input id="title" type="text" th:field="*{title}">
                 </fieldset>
                 <fieldset>
-                    <label for="size">Size (pages): </label>
+                    <label for="size">Size(pages): </label>
                     <input id="size" type="text" th:field="*{size}">
                 </fieldset>
                     <input class="btn" type="submit" value="Add">
@@ -32,6 +32,23 @@
                     <input id="book-id" type="text" th:name="bookId">
                 </fieldset>
                     <input class="btn" type="submit" value="Remove">
+            </form>
+
+            <div class="heading">Advanced book removing:</div>
+            <form class="form remove-regex-form" method="post" th:action="@{/books/removeByRegex}">
+                <fieldset>
+                    <label for="book-author">Author contains: </label>
+                    <input id="book-author" type="text" th:name="bookAuthor">
+                </fieldset>
+                <fieldset>
+                    <label for="book-title">Title contains: </label>
+                    <input id="book-title" type="text" th:name="bookTitle">
+                </fieldset>
+                <fieldset>
+                    <label for="book-size">Size(pages) contains: </label>
+                    <input id="book-size" type="text" th:name="bookSize">
+                </fieldset>
+                <input class="btn" type="submit" value="Remove">
             </form>
         </div>
         <table class="book-table" id="books">

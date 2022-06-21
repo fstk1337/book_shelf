@@ -50,4 +50,18 @@ public class BookShelfController {
         logger.info("redirecting to book shelf");
         return "redirect:/books";
     }
+
+    @PostMapping("removeByRegex")
+    public String removeBooksByRegex(@RequestParam("bookAuthor") String author,
+                                     @RequestParam("bookTitle") String title,
+                                     @RequestParam("bookSize") String size) {
+        int records = bookService.removeBooksByRegex(author, title, size);
+        if (records > 0) {
+            logger.info("books successfully removed: " + records);
+        } else {
+            logger.warn("There are no books found matching the inputs");
+        }
+        logger.info("redirecting to book shelf");
+        return "redirect:/books";
+    }
 }

@@ -1,5 +1,6 @@
 package by.fstk.shelf.model;
 
+import by.fstk.shelf.util.RegexChecker;
 import by.fstk.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,5 +41,14 @@ public class BookRepository implements ProjectRepository<Book> {
         }
         logger.warn("book id " + bookIdToRemove + " not found - remove failed");
         return false;
+    }
+
+    public int removeBooksByRegex(String author, String title, String size) {
+        List<Integer> matchIDs = RegexChecker.checkBooks(retrieveAll(), author, title, size);
+        int removes = 0;
+        for (int id: matchIDs) {
+            if (removeItemById(id)) removes++;
+        }
+        return removes;
     }
 }
