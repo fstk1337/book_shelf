@@ -10,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
     private final Logger logger = LogManager.getLogger(UserController.class);
 
-    @GetMapping(value = "/create")
+    @GetMapping("/create")
     public ModelAndView create() {
-        logger.info("GET /create returns create_page.html");
+        logger.info("server returns create_page");
         return new ModelAndView("create_page");
     }
 }

@@ -8,12 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-
     private final Logger logger = LogManager.getLogger(LoginController.class);
 
-    @GetMapping(value = "/login")
+    @GetMapping("/login")
     public ModelAndView login() {
-        logger.info("GET /login returns login_page.html");
+        logger.info("server returns login_page");
         return new ModelAndView("login_page");
     }
 }

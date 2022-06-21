@@ -12,7 +12,7 @@ public class BookShelfController {
 
     @GetMapping("/books")
     public ModelAndView books() {
-        logger.info("got book shelf");
+        logger.info("server returns book_shelf");
         return new ModelAndView("book_shelf");
     }
 }
