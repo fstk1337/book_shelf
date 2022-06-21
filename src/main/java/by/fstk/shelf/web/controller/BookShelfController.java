@@ -39,11 +39,15 @@ public class BookShelfController {
     }
 
     @PostMapping("/remove")
-    public String removeBook(@RequestParam("bookId") Integer bookId) {
-        if (bookService.removeBookById(bookId)) {
-            return "redirect:/books";
+    public String removeBook(@RequestParam(name = "bookId", required = false) Integer bookId) {
+        if(bookId == null) {
+            logger.warn("bookId parameter is null, removing impossible");
+        } else if(bookService.removeBookById(bookId)) {
+            logger.info("the book with id '" + bookId + "' was successfully removed");
         } else {
-            return "book_shelf";
+            logger.warn("the book with id '" + bookId + "' does not exist");
         }
+        logger.info("redirecting to book shelf");
+        return "redirect:/books";
     }
 }
