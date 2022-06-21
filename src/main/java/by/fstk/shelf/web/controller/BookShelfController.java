@@ -40,9 +40,9 @@ public class BookShelfController {
 
     @PostMapping("/remove")
     public String removeBook(@RequestParam(name = "bookId", required = false) Integer bookId) {
-        if(bookId == null) {
+        if (bookId == null) {
             logger.warn("bookId parameter is null, removing impossible");
-        } else if(bookService.removeBookById(bookId)) {
+        } else if (bookService.removeBookById(bookId)) {
             logger.info("the book with id '" + bookId + "' was successfully removed");
         } else {
             logger.warn("the book with id '" + bookId + "' does not exist");
