@@ -12,27 +12,21 @@
 
     <context:component-scan base-package="by.fstk.shelf.web" />
     <mvc:annotation-driven/>
-    <mvc:default-servlet-handler/>
 
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/"/>
-        <property name="suffix" value=".html"/>
+    <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+            <property name="prefix" value="/WEB-INF/views/"/>
+            <property name="suffix" value=".html"/>
+            <property name="templateMode" value="HTML5"/>
+            <property name="cacheable" value="false"/>
     </bean>
 
-    <!--        <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">-->
-    <!--                <property name="prefix" value="/WEB-INF/views/"/>-->
-    <!--                <property name="suffix" value=".html"/>-->
-    <!--                <property name="templateMode" value="HTML5"/>-->
-    <!--        </bean>-->
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+            <property name="templateEngine" ref="templateEngine"/>
+            <property name="order" value="1"/>
+    </bean>
 
-    <!--        <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">-->
-    <!--                <property name="templateEngine" ref="templateEngine"/>-->
-    <!--                <property name="order" value="1"/>-->
-    <!--                <property name="viewNames" value="*.html"/>-->
-    <!--        </bean>-->
-
-    <!--        <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">-->
-    <!--                <property name="templateResolver" ref="templateResolver"/>-->
-    <!--                <property name="enableSpringELCompiler" value="true"/>-->
-    <!--        </bean>-->
+    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+            <property name="templateResolver" ref="templateResolver"/>
+            <property name="enableSpringELCompiler" value="true"/>
+    </bean>
 </beans>
