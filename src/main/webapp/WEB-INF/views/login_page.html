@@ -10,6 +10,7 @@
         <div class="form-header">
             <img id="book_icon" class="login_item" th:src="@{/img/book_icon.png}" alt="book"/>
         </div>
+        <div class="heading">Please login to view book shelf</div>
         <div class="form-wrapper">
             <form method="post" class="form" th:action="@{/login/auth}" th:object="${loginForm}">
                 <fieldset>
@@ -20,10 +21,7 @@
                     <label for="password">Password: </label>
                     <input id="password" class="login_item" type="password" th:field="*{password}">
                 </fieldset>
-                <fieldset>
-                    <input class="btn login_item" type="submit" value="login">
-                    <input class="btn create_item" type="button" value="create" onclick="location.href='./create'">
-                </fieldset>
+                <input class="btn login_item" type="submit" value="Login">
             </form>
         </div>
     </div>
