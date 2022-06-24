@@ -1,4 +1,4 @@
-package by.fstk.shelf.service;
+package by.fstk.shelf.app.service;
 
 import by.fstk.shelf.web.dto.LoginForm;
 import org.apache.logging.log4j.LogManager;

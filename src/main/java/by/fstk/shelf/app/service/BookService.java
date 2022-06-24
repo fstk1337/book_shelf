@@ -1,7 +1,9 @@
-package by.fstk.shelf.service;
+package by.fstk.shelf.app.service;
 
-import by.fstk.shelf.model.BookRepository;
+import by.fstk.shelf.app.model.BookRepository;
 import by.fstk.shelf.web.dto.Book;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import java.util.List;
 @Service
 public class BookService {
     private final BookRepository bookRepo;
+    private final Logger logger = LogManager.getLogger(BookService.class);
 
     @Autowired
     public BookService(BookRepository bookRepo) {
@@ -24,11 +27,19 @@ public class BookService {
         bookRepo.store(book);
     }
 
-    public boolean removeBookById(Integer bookIdToRemove) {
+    public boolean removeBookById(String bookIdToRemove) {
         return bookRepo.removeItemById(bookIdToRemove);
     }
 
     public int removeBooksByRegex(String author, String title, String size) {
         return bookRepo.removeBooksByRegex(author, title, size);
+    }
+
+    public void defaultInit() {
+        logger.info("default INIT in book service");
+    }
+
+    public void defaultDestroy() {
+        logger.info("default DESTROY in book service");
     }
 }
