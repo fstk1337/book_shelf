@@ -1,19 +1,24 @@
-package by.fstk.shelf.model;
+package by.fstk.shelf.app.model;
 
-import by.fstk.shelf.util.RegexChecker;
+import by.fstk.shelf.app.service.IdProvider;
+import by.fstk.shelf.app.util.RegexChecker;
 import by.fstk.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BookRepository implements ProjectRepository<Book> {
+public class BookRepository implements ProjectRepository<Book>, ApplicationContextAware {
 
     private final Logger logger = LogManager.getLogger(BookRepository.class);
     private final List<Book> repo = new ArrayList<>();
+    private ApplicationContext context;
 
     @Override
     public List<Book> retrieveAll() {
@@ -25,14 +30,14 @@ public class BookRepository implements ProjectRepository<Book> {
         if (book.getAuthor().isEmpty() && book.getTitle().isEmpty() && book.getSize() == null) {
             logger.warn("book info is empty, can't save");
         } else {
-            book.setId(book.hashCode());
+            book.setId(context.getBean(IdProvider.class).provideId(book));
             logger.info("store new book: " + book);
             repo.add(book);
         }
     }
 
     @Override
-    public boolean removeItemById(Integer bookIdToRemove) {
+    public boolean removeItemById(String bookIdToRemove) {
         for(Book book: retrieveAll()) {
             if (book.getId().equals(bookIdToRemove)) {
                 logger.info("remove book completed: " + book);
@@ -44,11 +49,24 @@ public class BookRepository implements ProjectRepository<Book> {
     }
 
     public int removeBooksByRegex(String author, String title, String size) {
-        List<Integer> matchIDs = RegexChecker.checkBooks(retrieveAll(), author, title, size);
+        List<String> matchIDs = RegexChecker.checkBooks(retrieveAll(), author, title, size);
         int removes = 0;
-        for (int id: matchIDs) {
+        for (String id: matchIDs) {
             if (removeItemById(id)) removes++;
         }
         return removes;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.context = applicationContext;
+    }
+
+    public void defaultInit() {
+        logger.info("default INIT in book repo bean");
+    }
+
+    public void defaultDestroy() {
+        logger.info("default DESTROY in book repo bean");
     }
 }

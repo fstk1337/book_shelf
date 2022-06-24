@@ -1,6 +1,6 @@
 package by.fstk.shelf.web.controller;
 
-import by.fstk.shelf.service.BookService;
+import by.fstk.shelf.app.service.BookService;
 import by.fstk.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +25,7 @@ public class BookShelfController {
 
     @GetMapping
     public String books(Model model) {
-        logger.info("server returns book_shelf");
+        logger.info(this.toString());
         model.addAttribute("book", new Book());
         model.addAttribute("bookList", bookService.getAllBooks());
         return "book_shelf";
@@ -39,7 +39,7 @@ public class BookShelfController {
     }
 
     @PostMapping("/remove")
-    public String removeBook(@RequestParam(name = "bookId", required = false) Integer bookId) {
+    public String removeBook(@RequestParam(name = "bookId", required = false) String bookId) {
         if (bookId == null) {
             logger.warn("bookId parameter is null, removing impossible");
         } else if (bookService.removeBookById(bookId)) {
