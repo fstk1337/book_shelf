@@ -34,12 +34,4 @@ public class BookService {
     public int removeBooksByRegex(String author, String title, String size) {
         return bookRepo.removeBooksByRegex(author, title, size);
     }
-
-    public void defaultInit() {
-        logger.info("default INIT in book service");
-    }
-
-    public void defaultDestroy() {
-        logger.info("default DESTROY in book service");
-    }
 }

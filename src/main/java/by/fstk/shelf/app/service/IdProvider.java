@@ -20,50 +20,42 @@ public class IdProvider implements InitializingBean, DisposableBean, BeanPostPro
     }
 
     private void initIdProvider() {
-        logger.info("provider INIT");
+        //logger.info("provider INIT");
     }
 
     private void destroyIdProvider() {
-        logger.info("provider DESTROY");
-    }
-
-    private void defaultInit() {
-        logger.info("default INIT in provider");
-    }
-
-    private void defaultDestroy() {
-        logger.info("default DESTROY in provider");
+        //logger.info("provider DESTROY");
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        logger.info("provider afterPropertiesSet invoked");
+    public void afterPropertiesSet() {
+        //logger.info("provider afterPropertiesSet invoked");
     }
 
     @Override
-    public void destroy() throws Exception {
-        logger.info("DisposableBean destroy invoked");
+    public void destroy() {
+        //logger.info("DisposableBean destroy invoked");
     }
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        logger.info("postProcessBeforeInitialization invoked by bean " + beanName);
+        //logger.info("postProcessBeforeInitialization invoked by bean " + beanName);
         return null;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        logger.info("postProcessAfterInitialization invoked by bean " + beanName);
+        //logger.info("postProcessAfterInitialization invoked by bean " + beanName);
         return null;
     }
 
     @PostConstruct
     public void postConstructIdProvider() {
-        logger.info("PostConstruct annotated method called");
+        //logger.info("PostConstruct annotated method called");
     }
 
     @PreDestroy
     public void preDestroyIdProvider() {
-        logger.info("PreDestroy annotated method called");
+        //logger.info("PreDestroy annotated method called");
     }
 }
