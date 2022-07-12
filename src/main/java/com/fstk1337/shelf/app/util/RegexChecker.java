@@ -1,6 +1,6 @@
-package by.fstk.shelf.app.util;
+package com.fstk1337.shelf.app.util;
 
-import by.fstk.shelf.web.dto.Book;
+import com.fstk1337.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

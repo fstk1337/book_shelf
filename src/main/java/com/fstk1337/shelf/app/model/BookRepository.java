@@ -1,8 +1,8 @@
-package by.fstk.shelf.app.model;
+package com.fstk1337.shelf.app.model;
 
-import by.fstk.shelf.app.service.IdProvider;
-import by.fstk.shelf.app.util.RegexChecker;
-import by.fstk.shelf.web.dto.Book;
+import com.fstk1337.shelf.app.service.IdProvider;
+import com.fstk1337.shelf.app.util.RegexChecker;
+import com.fstk1337.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeansException;

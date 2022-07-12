@@ -1,4 +1,4 @@
-package by.fstk.shelf.web.controller;
+package com.fstk1337.shelf.web.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
