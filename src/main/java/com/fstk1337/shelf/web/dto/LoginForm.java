@@ -1,4 +1,4 @@
-package by.fstk.shelf.web.dto;
+package com.fstk1337.shelf.web.dto;
 
 
 public class LoginForm {
@@ -31,6 +31,6 @@ public class LoginForm {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "LoginForm{username='" + username + "', password='" + password + "'}";
     }
 }

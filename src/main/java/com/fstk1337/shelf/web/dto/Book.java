@@ -1,4 +1,4 @@
-package by.fstk.shelf.web.dto;
+package com.fstk1337.shelf.web.dto;
 
 
 public class Book {

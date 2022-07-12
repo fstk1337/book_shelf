@@ -1,7 +1,7 @@
-package by.fstk.shelf.app.service;
+package com.fstk1337.shelf.app.service;
 
-import by.fstk.shelf.app.model.BookRepository;
-import by.fstk.shelf.web.dto.Book;
+import com.fstk1337.shelf.app.model.BookRepository;
+import com.fstk1337.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +33,5 @@ public class BookService {
 
     public int removeBooksByRegex(String author, String title, String size) {
         return bookRepo.removeBooksByRegex(author, title, size);
-    }
-
-    public void defaultInit() {
-        logger.info("default INIT in book service");
-    }
-
-    public void defaultDestroy() {
-        logger.info("default DESTROY in book service");
     }
 }

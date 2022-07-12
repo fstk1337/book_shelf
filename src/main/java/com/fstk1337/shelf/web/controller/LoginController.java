@@ -1,7 +1,7 @@
-package by.fstk.shelf.web.controller;
+package com.fstk1337.shelf.web.controller;
 
-import by.fstk.shelf.app.service.LoginService;
-import by.fstk.shelf.web.dto.LoginForm;
+import com.fstk1337.shelf.app.service.LoginService;
+import com.fstk1337.shelf.web.dto.LoginForm;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

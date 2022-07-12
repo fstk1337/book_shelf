@@ -1,4 +1,4 @@
-package by.fstk.shelf.web.config;
+package com.fstk1337.shelf.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,7 +11,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-@ComponentScan(basePackages = "by.fstk.shelf.web")
+@ComponentScan(basePackages = "com.fstk1337.shelf.web")
 @EnableWebMvc
 public class WebContextConfig implements WebMvcConfigurer {
 

@@ -1,7 +1,7 @@
-package by.fstk.shelf;
+package com.fstk1337.shelf;
 
-import by.fstk.shelf.app.config.AppContextConfig;
-import by.fstk.shelf.web.config.WebContextConfig;
+import com.fstk1337.shelf.app.config.AppContextConfig;
+import com.fstk1337.shelf.web.config.WebContextConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.WebApplicationInitializer;
