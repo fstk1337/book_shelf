@@ -1,10 +1,13 @@
 package com.fstk1337.shelf.web.dto;
 
 
+import javax.validation.constraints.Digits;
+
 public class Book {
     private String id;
     private String author;
     private String title;
+    @Digits(integer = 4, fraction = 0)
     private Integer size;
 
     public Book(String id, String author, String title, Integer size) {

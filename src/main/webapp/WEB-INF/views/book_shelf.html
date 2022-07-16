@@ -22,7 +22,8 @@
                     <label for="size">Size(pages): </label>
                     <input id="size" type="text" th:field="*{size}">
                 </fieldset>
-                    <input class="btn" type="submit" value="Add">
+                <p th:if="${#fields.hasErrors()}">field value must be digit and less than 4 signs</p>
+                <input class="btn" type="submit" value="Add">
             </form>
 
             <div class="heading">Removing a book:</div>
@@ -31,8 +32,8 @@
                     <label for="book-id">Book ID: </label>
                     <input id="book-id" type="text" th:field="*{id}">
                 </fieldset>
-                    <input class="btn" type="submit" value="Remove"><br>
                 <p th:if="${#fields.hasErrors()}">Wrong id or not found</p>
+                <input class="btn" type="submit" value="Remove">
             </form>
 
             <div class="heading">Advanced book removing:</div>
