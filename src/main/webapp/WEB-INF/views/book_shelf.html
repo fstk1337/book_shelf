@@ -26,12 +26,13 @@
             </form>
 
             <div class="heading">Removing a book:</div>
-            <form class="form remove-form" method="post" th:action="@{/books/remove}">
+            <form class="form remove-form" method="post" th:action="@{/books/remove}" th:object="${bookIdToRemove}">
                 <fieldset>
                     <label for="book-id">Book ID: </label>
-                    <input id="book-id" type="text" th:name="bookId">
+                    <input id="book-id" type="text" th:field="*{id}">
                 </fieldset>
-                    <input class="btn" type="submit" value="Remove">
+                    <input class="btn" type="submit" value="Remove"><br>
+                <p th:if="${#fields.hasErrors()}">Wrong id or not found</p>
             </form>
 
             <div class="heading">Advanced book removing:</div>
