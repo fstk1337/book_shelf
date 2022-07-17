@@ -16,6 +16,7 @@
     <maven.compiler.target>11</maven.compiler.target>
     <junit5.version>5.9.0-M1</junit5.version>
     <spring.version>5.3.21</spring.version>
+    <spring.security.version>5.7.2</spring.security.version>
     <log4j.version>2.17.2</log4j.version>
     <thymeleaf.version>3.0.15.RELEASE</thymeleaf.version>
     <thymeleaf-spring5.version>3.1.0.M2</thymeleaf-spring5.version>
@@ -74,6 +75,21 @@
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>6.2.3.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.security.version}</version>
     </dependency>
   </dependencies>
 
