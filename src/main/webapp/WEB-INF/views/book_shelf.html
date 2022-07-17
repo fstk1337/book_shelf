@@ -52,6 +52,15 @@
                 </fieldset>
                 <input class="btn" type="submit" value="Remove">
             </form>
+
+            <div class="heading">Upload external resources:</div>
+            <form class="form upload-file-form" method="post" th:action="@{/books/uploadFile}" enctype="multipart/form-data">
+                <fieldset>
+                    <label for="file-uploader">Choose a file: </label>
+                    <input id="file-uploader" type="file" name="file">
+                </fieldset>
+                <input class="btn" type="submit" value="Upload">
+            </form>
         </div>
         <table class="book-table" id="books">
             <tr>
