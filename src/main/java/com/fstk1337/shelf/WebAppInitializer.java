@@ -4,6 +4,7 @@ import com.fstk1337.shelf.app.config.AppContextConfig;
 import com.fstk1337.shelf.web.config.WebContextConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.h2.server.web.WebServlet;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -32,5 +33,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
         logger.info("dispatcher ready");
+
+        ServletRegistration.Dynamic servlet = servletContext.addServlet("h2-console", new WebServlet());
+        servlet.setLoadOnStartup(2);
+        servlet.addMapping("/console/*");
     }
 }
