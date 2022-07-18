@@ -60,11 +60,17 @@ public class BookShelfController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", new Book());
             model.addAttribute("bookList", bookService.getAllBooks());
+            model.addAttribute("invalidIDMessage", "Invalid book ID");
             return "book_shelf";
         }
-        bookService.removeBookById(bookIdToRemove.getId());
-        logger.info("redirecting to book shelf");
-        return "redirect:/books";
+        if (bookService.removeBookById(bookIdToRemove.getId())) {
+            logger.info("redirecting to book shelf");
+            return "redirect:/books";
+        }
+        model.addAttribute("book", new Book());
+        model.addAttribute("bookList", bookService.getAllBooks());
+        model.addAttribute("bookNotFoundMessage", "Book with such ID not found");
+        return "book_shelf";
     }
 
     @PostMapping("removeByRegex")

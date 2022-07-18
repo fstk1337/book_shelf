@@ -32,7 +32,8 @@
                     <label for="book-id">Book ID: </label>
                     <input id="book-id" type="text" th:field="*{id}">
                 </fieldset>
-                <p th:if="${#fields.hasErrors()}">Wrong id or not found</p>
+                <p th:if="${#fields.hasErrors()}" th:text="${invalidIDMessage}"></p>
+                <p th:else th:text="${bookNotFoundMessage}"></p>
                 <input class="btn" type="submit" value="Remove">
             </form>
 
