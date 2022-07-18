@@ -1,2 +1,5 @@
-INSERT INTO book (author, title, size)
+INSERT INTO BOOK (author, title, size)
 VALUES ('Dostoevsky', 'Idiot', 350);
+
+INSERT INTO `USER` (name, `password`)
+VALUES ('root', '123');

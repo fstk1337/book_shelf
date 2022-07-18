@@ -7,5 +7,5 @@ public interface ProjectRepository<T> {
     List<T> retrieveAll();
     void store(T item);
 
-    boolean removeItemById(Integer itemIdToRemove);
+    boolean removeItemById(Integer itemId);
 }

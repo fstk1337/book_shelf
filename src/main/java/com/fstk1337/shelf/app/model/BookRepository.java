@@ -1,14 +1,10 @@
 package com.fstk1337.shelf.app.model;
 
-import com.fstk1337.shelf.app.service.IdProvider;
 import com.fstk1337.shelf.app.util.RegexChecker;
 import com.fstk1337.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,11 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BookRepository implements ProjectRepository<Book>, ApplicationContextAware {
+public class BookRepository implements ProjectRepository<Book> {
 
     private final Logger logger = LogManager.getLogger(BookRepository.class);
     private final NamedParameterJdbcTemplate jdbcTemplate;
-    private ApplicationContext context;
 
     @Autowired
     public BookRepository(NamedParameterJdbcTemplate jdbcTemplate) {
@@ -31,7 +26,7 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
 
     @Override
     public List<Book> retrieveAll() {
-        List<Book> books = jdbcTemplate.query("SELECT * FROM book",
+        List<Book> books = jdbcTemplate.query("SELECT * FROM BOOK",
                 (ResultSet rs, int rowNum) -> {
                     Book book = new Book();
                     book.setId(rs.getInt("id"));
@@ -48,13 +43,12 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
         if (book.getAuthor().isEmpty() && book.getTitle().isEmpty() && book.getSize() == null) {
             logger.warn("book info is empty, can't save");
         } else {
-            book.setId(context.getBean(IdProvider.class).provideId(book));
             MapSqlParameterSource parameterSource = new MapSqlParameterSource();
             parameterSource.addValue("author", book.getAuthor());
             parameterSource.addValue("title", book.getTitle());
             parameterSource.addValue("size", book.getSize());
             logger.info("store new book: " + book);
-            jdbcTemplate.update("INSERT INTO book (author, title, size) " +
+            jdbcTemplate.update("INSERT INTO BOOK (author, title, size) " +
                     "VALUES (:author, :title, :size)", parameterSource);
         }
     }
@@ -66,7 +60,7 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
         for(Book book: retrieveAll()) {
             if (book.getId().equals(bookId)) {
                 logger.info("remove book completed: " + book);
-                jdbcTemplate.update("DELETE FROM book WHERE id = :id", parameterSource);
+                jdbcTemplate.update("DELETE FROM BOOK WHERE id = :id", parameterSource);
                 return true;
             }
         }
@@ -81,10 +75,5 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
             if (removeItemById(id)) removes++;
         }
         return removes;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.context = applicationContext;
     }
 }
