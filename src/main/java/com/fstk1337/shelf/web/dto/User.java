@@ -1,9 +1,16 @@
 package com.fstk1337.shelf.web.dto;
 
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class User {
     private Integer id;
+    @NotEmpty
+    @Size(min = 4, max = 32)
     private String name;
+    @NotEmpty
+    @Size(min = 8, max = 128)
     private String password;
 
     public User() {}
