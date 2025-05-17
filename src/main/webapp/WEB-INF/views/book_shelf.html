@@ -22,16 +22,19 @@
                     <label for="size">Size(pages): </label>
                     <input id="size" type="text" th:field="*{size}">
                 </fieldset>
-                    <input class="btn" type="submit" value="Add">
+                <p th:if="${#fields.hasErrors()}">field value must be digit and less than 4 signs</p>
+                <input class="btn" type="submit" value="Add">
             </form>
 
             <div class="heading">Removing a book:</div>
-            <form class="form remove-form" method="post" th:action="@{/books/remove}">
+            <form class="form remove-form" method="post" th:action="@{/books/remove}" th:object="${bookIdToRemove}">
                 <fieldset>
                     <label for="book-id">Book ID: </label>
-                    <input id="book-id" type="text" th:name="bookId">
+                    <input id="book-id" type="text" th:field="*{id}">
                 </fieldset>
-                    <input class="btn" type="submit" value="Remove">
+                <p th:if="${#fields.hasErrors()}" th:text="${invalidIDMessage}"></p>
+                <p th:else th:text="${bookNotFoundMessage}"></p>
+                <input class="btn" type="submit" value="Remove">
             </form>
 
             <div class="heading">Advanced book removing:</div>
@@ -49,6 +52,15 @@
                     <input id="book-size" type="text" th:name="bookSize">
                 </fieldset>
                 <input class="btn" type="submit" value="Remove">
+            </form>
+
+            <div class="heading">Upload external resources:</div>
+            <form class="form upload-file-form" method="post" th:action="@{/books/uploadFile}" enctype="multipart/form-data">
+                <fieldset>
+                    <label for="file-uploader">Choose a file: </label>
+                    <input id="file-uploader" type="file" name="file">
+                </fieldset>
+                <input class="btn" type="submit" value="Upload">
             </form>
         </div>
         <table class="book-table" id="books">

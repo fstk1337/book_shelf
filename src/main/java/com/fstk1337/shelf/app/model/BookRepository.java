@@ -1,28 +1,41 @@
 package com.fstk1337.shelf.app.model;
 
-import com.fstk1337.shelf.app.service.IdProvider;
 import com.fstk1337.shelf.app.util.RegexChecker;
 import com.fstk1337.shelf.web.dto.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BookRepository implements ProjectRepository<Book>, ApplicationContextAware {
+public class BookRepository implements ProjectRepository<Book> {
 
     private final Logger logger = LogManager.getLogger(BookRepository.class);
-    private final List<Book> repo = new ArrayList<>();
-    private ApplicationContext context;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public BookRepository(NamedParameterJdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public List<Book> retrieveAll() {
-        return new ArrayList<>(repo);
+        List<Book> books = jdbcTemplate.query("SELECT * FROM BOOK",
+                (ResultSet rs, int rowNum) -> {
+                    Book book = new Book();
+                    book.setId(rs.getInt("id"));
+                    book.setAuthor(rs.getString("author"));
+                    book.setTitle(rs.getString("title"));
+                    book.setSize(rs.getInt("size"));
+                    return book;
+                });
+        return new ArrayList<>(books);
     }
 
     @Override
@@ -30,35 +43,37 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
         if (book.getAuthor().isEmpty() && book.getTitle().isEmpty() && book.getSize() == null) {
             logger.warn("book info is empty, can't save");
         } else {
-            book.setId(context.getBean(IdProvider.class).provideId(book));
+            MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+            parameterSource.addValue("author", book.getAuthor());
+            parameterSource.addValue("title", book.getTitle());
+            parameterSource.addValue("size", book.getSize());
             logger.info("store new book: " + book);
-            repo.add(book);
+            jdbcTemplate.update("INSERT INTO BOOK (author, title, size) " +
+                    "VALUES (:author, :title, :size)", parameterSource);
         }
     }
 
     @Override
-    public boolean removeItemById(String bookIdToRemove) {
+    public boolean removeItemById(Integer bookId) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", bookId);
         for(Book book: retrieveAll()) {
-            if (book.getId().equals(bookIdToRemove)) {
+            if (book.getId().equals(bookId)) {
                 logger.info("remove book completed: " + book);
-                return repo.remove(book);
+                jdbcTemplate.update("DELETE FROM BOOK WHERE id = :id", parameterSource);
+                return true;
             }
         }
-        logger.warn("book id " + bookIdToRemove + " not found - remove failed");
+        logger.warn("book id " + bookId + " not found - remove failed");
         return false;
     }
 
     public int removeBooksByRegex(String author, String title, String size) {
-        List<String> matchIDs = RegexChecker.checkBooks(retrieveAll(), author, title, size);
+        List<Integer> matchIDs = RegexChecker.checkBooks(retrieveAll(), author, title, size);
         int removes = 0;
-        for (String id: matchIDs) {
+        for (Integer id: matchIDs) {
             if (removeItemById(id)) removes++;
         }
         return removes;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.context = applicationContext;
     }
 }

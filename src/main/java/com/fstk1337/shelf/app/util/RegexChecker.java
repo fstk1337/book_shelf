@@ -30,8 +30,8 @@ public class RegexChecker {
         }
     }
 
-    public static List<String> checkBooks(List<Book> books, String authorRegex, String titleRegex, String sizeRegex) {
-        List<String> ids = new ArrayList<>();
+    public static List<Integer> checkBooks(List<Book> books, String authorRegex, String titleRegex, String sizeRegex) {
+        List<Integer> ids = new ArrayList<>();
         for (Book book: books) {
             if (check(authorRegex, book.getAuthor()) &&
                 check(titleRegex, book.getTitle()) &&

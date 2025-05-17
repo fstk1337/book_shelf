@@ -1,5 +1,6 @@
 package com.fstk1337.shelf.web.controller;
 
+import com.fstk1337.shelf.app.exception.BookShelfLoginException;
 import com.fstk1337.shelf.app.service.LoginService;
 import com.fstk1337.shelf.web.dto.LoginForm;
 import org.apache.logging.log4j.LogManager;
@@ -31,13 +32,13 @@ public class LoginController {
     }
 
     @PostMapping("/auth")
-    public String authenticate(LoginForm loginForm) {
+    public String authenticate(LoginForm loginForm) throws BookShelfLoginException {
         if (loginService.authenticate(loginForm)) {
             logger.info("login OK redirect to book shelf");
             return "redirect:/books";
         } else {
             logger.info("login FAIL redirect to login");
-            return "redirect:/login";
+            throw new BookShelfLoginException("invalid username or password");
         }
     }
 }
